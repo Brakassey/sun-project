@@ -33,7 +33,6 @@ public class SpriteManager {
 		String id = file.substring(0, file.indexOf('.')) ;
 
 		if (!getInstance().m_sprites.containsKey(id)) {
-			if (!dir.startsWith("/")) dir = '/' + dir ;
 			if (!dir.endsWith("/")) dir += '/' ;
 
 			//throw new ResourceException(path + " is already used in " + getInstance().getClass().getCanonicalName()) ;

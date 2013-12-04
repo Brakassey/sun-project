@@ -26,7 +26,7 @@ public class SunProjectApplication implements ApplicationListener {
 	@Override
 	public void create() {
 		
-		spriteAnime = "C:\\Users\\Utilisateur\\Workspace\\SunProject\\img\\mogloo.png";
+		spriteAnime = "img/mogloo.png";
 		myAnimator = new Animator(spriteAnime, 4, 4, 50, 50);
 		myAnimator.create();	
 		
@@ -39,10 +39,10 @@ public class SunProjectApplication implements ApplicationListener {
 		m_camera.update() ;
 
 		try {
-			SpriteManager.addSprite("C:\\Users\\Utilisateur\\Workspace\\SunProject\\img\\", "boss.png") ;
-			SpriteManager.addSprite("C:\\Users\\Utilisateur\\Workspace\\SunProject\\img\\", "mogloo.png") ;
+			SpriteManager.addSprite("img", "boss.png") ;
+			SpriteManager.addSprite("img", "mogloo.png") ;
 
-			MapManager.addMap("C:\\Users\\Utilisateur\\Workspace\\SunProject\\maps\\", "test.tmx", m_batch) ;
+			MapManager.addMap("maps", "test.tmx", m_batch) ;
 		}
 		catch(Exception e) {
 			e.printStackTrace() ;

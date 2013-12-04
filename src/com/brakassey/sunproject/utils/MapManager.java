@@ -41,7 +41,6 @@ public class MapManager {
 		String id = file.substring(0, file.indexOf('.')) ;
 
 		if (!getInstance().m_maps.containsKey(id)) {
-			if (!dir.startsWith("/")) dir = '/' + dir ;
 			if (!dir.endsWith("/")) dir += '/' ;
 
 			TiledMap map = getInstance().m_loader.load(/*"maps"+*/dir+file) ;
