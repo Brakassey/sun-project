@@ -4,7 +4,6 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.brakassey.sunproject.utils.MapManager;
@@ -22,12 +21,14 @@ public class SunProjectApplication implements ApplicationListener {
 	protected OrthographicCamera m_camera ;
 	Animator myAnimator;
 	String spriteAnime;
+	
+
 
 	@Override
 	public void create() {
 		
 		spriteAnime = "img/mogloo.png";
-		myAnimator = new Animator(spriteAnime, 4, 4, 50, 50);
+		myAnimator = new Animator(spriteAnime, 4, 4, 30, 30);
 		myAnimator.create();	
 		
 		m_screen = new Screen(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()) ;
@@ -41,8 +42,7 @@ public class SunProjectApplication implements ApplicationListener {
 		try {
 			SpriteManager.addSprite("img", "boss.png") ;
 			SpriteManager.addSprite("img", "mogloo.png") ;
-
-			MapManager.addMap("maps", "test.tmx", m_batch) ;
+			MapManager.addMap("maps", "zelda.tmx", m_batch) ;
 		}
 		catch(Exception e) {
 			e.printStackTrace() ;
@@ -60,15 +60,15 @@ public class SunProjectApplication implements ApplicationListener {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT) ;
 		Gdx.gl.glClearColor(1, 1, 1, 1) ;
 		// Show the map
-		TiledMapRenderer mapRender = MapManager.getMap("test") ;
+		TiledMapRenderer mapRender = MapManager.getMap("zelda") ;
 		mapRender.setView(m_camera) ;
-		myAnimator.render();
-		mapRender.render() ;
+		myAnimator.setMap(mapRender, m_camera);
 
 		m_batch.begin() ;
 		/*Sprite sprite = SpriteManager.getSprite("mogloo") ;
 		sprite.setPosition(50.f, 50.f) ;
 		sprite.draw(m_batch) ;*/
+		myAnimator.render();
 		m_batch.end() ;
 	}
 

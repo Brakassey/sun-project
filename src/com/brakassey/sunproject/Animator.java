@@ -4,10 +4,12 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 
 /**
  * This class allows to make moving animation with a sprites sheet.
@@ -23,7 +25,7 @@ public class Animator implements ApplicationListener {
     TextureRegion                   currentFrame;          
     String spriteAnime;
     float stateTime;                                      
-    float spriteSpeed = 40.0f;
+    float spriteSpeed = 20.0f;
     float spriteX;
     float spriteY;
     private TextureRegion walkFrame;
@@ -35,6 +37,8 @@ public class Animator implements ApplicationListener {
 	private Animation walkDownAnimation;
 	private Animation walkRightAnimation;
 	private Animation walkLeftAnimation;
+	private TiledMapRenderer currentMap;
+	private OrthographicCamera currentCam;
 	
 	/**
 	 * The constructor:
@@ -86,6 +90,11 @@ public class Animator implements ApplicationListener {
 		stateTime = 0f;                                            
 		walkFrame = walkDownAnimation.getKeyFrame(stateTime, true);
     }
+    
+    public void setMap(TiledMapRenderer tmr, OrthographicCamera m_camera){
+    	currentMap = tmr;
+    	currentCam = m_camera;
+    }
 
     @Override
     public void render() {
@@ -116,7 +125,10 @@ public class Animator implements ApplicationListener {
 		else{
 			currentFrame = walkFrame;
 		}
-	
+		// Trouver la formule pour que le personnage et la camera soient à la même vitesse !!! (possibilité de jouer avec spriteSpeed).
+		currentCam.position.set(spriteX, spriteY, 0);
+		currentCam.update();
+	    currentMap.render();
 	    spriteBatch.begin();
 	    spriteBatch.draw(currentFrame, spriteX, spriteY);
 	    spriteBatch.end();

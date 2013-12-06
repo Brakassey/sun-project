@@ -43,7 +43,8 @@ public class MapManager {
 		if (!getInstance().m_maps.containsKey(id)) {
 			if (!dir.endsWith("/")) dir += '/' ;
 
-			TiledMap map = getInstance().m_loader.load(/*"maps"+*/dir+file) ;
+			//TiledMap map = getInstance().m_loader.load(/*"maps"+*/dir+file) ;
+			TiledMap map = new TmxMapLoader().load(dir+file);
 			OrthogonalTiledMapRenderer rendered = new OrthogonalTiledMapRenderer(map, TILE_SCALE) ;
 			getInstance().m_maps.put(id, rendered) ;
 		}
