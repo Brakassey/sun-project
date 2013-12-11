@@ -1,5 +1,9 @@
 package com.brakassey.sunproject.utils;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Input.Peripheral;
+
 public class Input {
 
     /**
@@ -36,17 +40,17 @@ public class Input {
         m_buttons[3] = false;
     }
 
-    Direction getDirection()
+    public Direction getDirection()
     {
         return m_direction;
     }
 
-    void setDirection(Direction direction)
+    private void setDirection(Direction direction)
     {
         m_direction = direction;
     }
 
-    boolean isDown(Button button)
+    public boolean isDown(Button button)
     {
         switch (button) {
         case A:
@@ -64,12 +68,12 @@ public class Input {
         return false;
     }
 
-    boolean isUp(Button button)
+    public boolean isUp(Button button)
     {
         return !isDown(button);
     }
 
-    void setState(Button button, boolean pressed)
+    private void setState(Button button, boolean pressed)
     {
         switch (button) {
         case A:
@@ -87,6 +91,37 @@ public class Input {
         case SELECT:
             m_buttons[3] = pressed;
             break;
+        }
+    }
+
+    public void update() {
+        if (Gdx.input.isPeripheralAvailable(Peripheral.MultitouchScreen))
+        {
+            // TODO TOUCHSCREEN CONTROLS
+
+        }
+        else
+        {
+            // KEYBOARD CONTROLS
+            setState(Button.A,      Gdx.input.isKeyPressed(Keys.C));
+            setState(Button.B,      Gdx.input.isKeyPressed(Keys.V));
+            setState(Button.START,  Gdx.input.isKeyPressed(Keys.D));
+            setState(Button.SELECT, Gdx.input.isKeyPressed(Keys.F));
+
+            if (Gdx.input.isKeyPressed(Keys.DPAD_UP))
+                setDirection(Direction.UP);
+
+            else if (Gdx.input.isKeyPressed(Keys.DPAD_DOWN))
+                setDirection(Direction.DOWN);
+
+            else if (Gdx.input.isKeyPressed(Keys.DPAD_RIGHT))
+                setDirection(Direction.RIGHT);
+
+            else if (Gdx.input.isKeyPressed(Keys.DPAD_LEFT))
+                setDirection(Direction.LEFT);
+
+            else
+                setDirection(Direction.NONE);
         }
     }
 
