@@ -17,7 +17,7 @@ public class Actor {
 
     private Input m_input;
 
-    private float m_speed;
+    protected float m_speed;
 
     private boolean m_first_press_A;
 
@@ -108,7 +108,7 @@ public class Actor {
             m_first_press_A = true;
     }
 
-    private void move(float x, float y) {
+    public void move(float x, float y) {
 
         if (x > 0)
         {
