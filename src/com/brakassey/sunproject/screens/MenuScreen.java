@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 public class MenuScreen implements Screen {
 
@@ -26,7 +27,7 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT) ;
 
         if (Gdx.input.isKeyPressed(Keys.ENTER) || Gdx.input.isTouched())
-            m_game.setScreen(new GameScreen(m_game));
+            m_game.setScreen(new GameScreen(m_game, new TmxMapLoader().load("maps/map1.tmx")));
 
 		m_batch.begin();
 		m_batch.end();
