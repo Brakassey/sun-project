@@ -73,7 +73,7 @@ public class Actor {
     {
         if (getInput() == null) return;
 
-        getInput().update();
+        getInput().update(delta);
 
         switch (getInput().getDirection())
         {

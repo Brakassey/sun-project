@@ -39,7 +39,7 @@ public class UserInput extends Input {
     }
 
     @Override
-    public void update() {
+    public void update(float delta) {
         int screenw = Gdx.graphics.getWidth();
         int screenh = Gdx.graphics.getHeight();
 
