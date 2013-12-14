@@ -218,17 +218,17 @@ public class Input {
         if (getDirection() != Direction.NONE)
             DPad.setColor(1, 1, 1, 0.3f);
         else
-            DPad.setColor(1, 1, 1, 0.6f);
+            DPad.setColor(1, 1, 1, 0.8f);
 
         if (isDown(Button.A))
             A.setColor(1, 1, 1, 0.3f);
         else
-            A.setColor(1, 1, 1, 0.6f);
+            A.setColor(1, 1, 1, 0.8f);
 
         if (isDown(Button.B))
             B.setColor(1, 1, 1, 0.3f);
         else
-            B.setColor(1, 1, 1, 0.6f);
+            B.setColor(1, 1, 1, 0.8f);
 
         DPad.draw(batch);
         A.draw(batch);
