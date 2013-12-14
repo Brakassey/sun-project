@@ -18,6 +18,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.brakassey.sunproject.Config;
 import com.brakassey.sunproject.actors.Actor;
 import com.brakassey.sunproject.actors.AnimatedActor;
+import com.brakassey.sunproject.inputs.RandomInput;
 import com.brakassey.sunproject.inputs.UserInput;
 
 
@@ -51,13 +52,21 @@ public class GameScreen implements Screen {
         m_gui_camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         m_gui_camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
         m_gui_camera.update();
-        
+
         m_hero = new AnimatedActor(this, new Texture(Gdx.files.internal("img/charsets/mogloo.png")), 4, 4);
+
         m_hero.setInput(m_input);
+        m_hero.setSpeed(3.2f);
         m_hero.setOnTile(18, 18);
+
+        Actor mogloo = new AnimatedActor(this, new Texture("img/charsets/mogloo.png"), 4, 4);
+        mogloo.setInput(new RandomInput());
+        mogloo.setSpeed(1.2f);
+        mogloo.setOnTile(10, 10);
 
         m_actors = new ArrayList<>();
         m_actors.add(m_hero);
+        m_actors.add(mogloo);
     }
 
     @Override
