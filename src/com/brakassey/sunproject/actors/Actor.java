@@ -27,7 +27,7 @@ public class Actor {
         m_sprite = new Sprite(m_texture, Config.TILE_SIZE, Config.TILE_SIZE);
         m_sprite.setScale(Config.TILE_SCALE);
 
-        m_speed = 4;
+        m_speed = 1;
 
         m_first_press_A = false;
     }
@@ -67,6 +67,16 @@ public class Actor {
     public float getY()
     {
         return m_sprite.getY() + Config.MAP_SHIFT;
+    }
+
+    public float getSpeed()
+    {
+        return m_speed;
+    }
+
+    public void setSpeed(float speed)
+    {
+        m_speed = speed;
     }
 
     public void update(float delta)
