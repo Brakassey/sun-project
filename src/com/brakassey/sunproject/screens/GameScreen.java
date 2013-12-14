@@ -1,16 +1,24 @@
 package com.brakassey.sunproject.screens;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.MapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.brakassey.sunproject.Config;
+import com.brakassey.sunproject.actors.Actor;
 import com.brakassey.sunproject.inputs.UserInput;
+
 
 public class GameScreen implements Screen {
 
@@ -24,6 +32,9 @@ public class GameScreen implements Screen {
 
     private OrthographicCamera m_camera;
     private OrthographicCamera m_gui_camera;
+
+    private List<Actor> m_actors;
+    Actor m_hero;
 
     public GameScreen(Game game, TiledMap map) {
         m_game = game;
@@ -39,12 +50,21 @@ public class GameScreen implements Screen {
         m_gui_camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         m_gui_camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
         m_gui_camera.update();
+
+        m_hero = new Actor(this, new Texture("img/charsets/leef.png"));
+        m_hero.setInput(m_input);
+        m_hero.setOnTile(18, 18);
+
+        m_actors = new ArrayList<>();
+        m_actors.add(m_hero);
     }
 
     @Override
     public void render(float delta) {
+
         // TODO Update game
-        m_input.update();
+        for (Actor a : m_actors)
+            a.update(delta);
 
 
         // TODO Render game
@@ -52,7 +72,7 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT) ;
 
         // Camera
-        m_camera.position.set(21, 21, 0);
+        m_camera.position.set(m_hero.getX(), m_hero.getY(), 0);
         m_camera.update();
         m_map_renderer.setView(m_camera);
 
@@ -64,7 +84,8 @@ public class GameScreen implements Screen {
 
 
         // Objects
-        //...
+        for (Actor a : m_actors)
+            a.draw(m_batch);
 
         m_batch.end();
 
@@ -112,6 +133,16 @@ public class GameScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+
+    public boolean isTileSolid(int x, int y) {
+        TiledMapTileLayer lay = ((TiledMapTileLayer) m_map.getLayers().get(0));
+
+        if (x < 0 || y < 0) return true;
+        if (x >= lay.getWidth()) return true;
+        if (y >= lay.getHeight()) return true;
+
+        return lay.getCell(x, y).getTile().getId() > 32;
     }
 
 }
