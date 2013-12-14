@@ -9,11 +9,13 @@ public class RandomInput extends Input {
 
     private Random m_rand;
     private float m_time_left;
+    private Direction m_last_dir;
 
     public RandomInput()
     {
         m_rand = new Random();
         m_time_left = TIME_CONST + TIME_VAR * m_rand.nextFloat();
+        m_last_dir = Direction.NONE;
     }
 
     @Override
@@ -23,21 +25,26 @@ public class RandomInput extends Input {
         {
             if (getDirection() == Direction.NONE)
             {
-                switch(m_rand.nextInt() % 4)
+                do
                 {
-                case 0:
-                    setDirection(Direction.DOWN);
-                    break;
-                case 1:
-                    setDirection(Direction.LEFT);
-                    break;
-                case 2:
-                    setDirection(Direction.UP);
-                    break;
-                case 3:
-                    setDirection(Direction.RIGHT);
-                    break;
+                    switch(m_rand.nextInt() % 4)
+                    {
+                    case 0:
+                        setDirection(Direction.DOWN);
+                        break;
+                    case 1:
+                        setDirection(Direction.LEFT);
+                        break;
+                    case 2:
+                        setDirection(Direction.UP);
+                        break;
+                    case 3:
+                        setDirection(Direction.RIGHT);
+                        break;
+                    }
                 }
+                while (getDirection() == m_last_dir);
+                m_last_dir = getDirection();
             }
             else
                 setDirection(Direction.NONE);
