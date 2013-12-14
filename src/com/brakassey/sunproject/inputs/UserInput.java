@@ -1,4 +1,4 @@
-package com.brakassey.sunproject.utils;
+package com.brakassey.sunproject.inputs;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Input {
+public class UserInput extends Input {
 
     /**
      * Configuration for buttons.
@@ -16,32 +16,6 @@ public class Input {
     final int SIZE = 96;
     final int DSIZE = SIZE * 2;
 
-    /**
-     * Directions.
-     */
-    public enum Direction
-    {
-        NONE,
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    }
-
-    /**
-     * Buttons.
-     */
-    public enum Button
-    {
-        A,
-        B,
-        START,
-        SELECT
-    }
-
-    private Direction m_direction       = Direction.NONE;
-    private boolean m_buttons[]         = new boolean[4];
-
     private Texture DPad_button;
     private Texture A_button;
     private Texture B_button;
@@ -49,13 +23,8 @@ public class Input {
     private Sprite A;
     private Sprite B;
 
-    public Input()
+    public UserInput()
     {
-        m_buttons[0] = false;
-        m_buttons[1] = false;
-        m_buttons[2] = false;
-        m_buttons[3] = false;
-
         DPad_button = new Texture("img/ui/dpad.png");
         A_button = new Texture("img/ui/A.png");
         B_button = new Texture("img/ui/B.png");
@@ -69,60 +38,7 @@ public class Input {
         B.setBounds(screenw - MARGIN * 2 - SIZE * 2, MARGIN, SIZE, SIZE);
     }
 
-    public Direction getDirection()
-    {
-        return m_direction;
-    }
-
-    private void setDirection(Direction direction)
-    {
-        m_direction = direction;
-    }
-
-    public boolean isDown(Button button)
-    {
-        switch (button) {
-        case A:
-            return m_buttons[0];
-
-        case B:
-            return m_buttons[1];
-
-        case START:
-            return m_buttons[2];
-
-        case SELECT:
-            return m_buttons[3];
-        }
-        return false;
-    }
-
-    public boolean isUp(Button button)
-    {
-        return !isDown(button);
-    }
-
-    private void setState(Button button, boolean pressed)
-    {
-        switch (button) {
-        case A:
-            m_buttons[0] = pressed;
-            break;
-
-        case B:
-            m_buttons[1] = pressed;
-            break;
-
-        case START:
-            m_buttons[2] = pressed;
-            break;
-
-        case SELECT:
-            m_buttons[3] = pressed;
-            break;
-        }
-    }
-
+    @Override
     public void update() {
         int screenw = Gdx.graphics.getWidth();
         int screenh = Gdx.graphics.getHeight();

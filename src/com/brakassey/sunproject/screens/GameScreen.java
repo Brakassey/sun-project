@@ -10,13 +10,13 @@ import com.badlogic.gdx.maps.MapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.brakassey.sunproject.Config;
-import com.brakassey.sunproject.utils.Input;
+import com.brakassey.sunproject.inputs.UserInput;
 
 public class GameScreen implements Screen {
 
     private Game m_game;
 
-    private Input m_input = new Input();
+    private UserInput m_input = new UserInput();
     private SpriteBatch m_batch = new SpriteBatch();
 
     private TiledMap m_map;
