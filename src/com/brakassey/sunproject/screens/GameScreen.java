@@ -52,7 +52,7 @@ public class GameScreen implements Screen {
         m_gui_camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
         m_gui_camera.update();
         
-        m_hero = new AnimatedActor(this, new Texture(Gdx.files.internal("img/charsets/leef.png")), 4, 4);
+        m_hero = new AnimatedActor(this, new Texture(Gdx.files.internal("img/charsets/mogloo.png")), 4, 4);
         m_hero.setInput(m_input);
         m_hero.setOnTile(18, 18);
 
