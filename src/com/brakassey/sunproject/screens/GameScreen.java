@@ -17,6 +17,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.brakassey.sunproject.Config;
 import com.brakassey.sunproject.actors.Actor;
+import com.brakassey.sunproject.actors.AnimatedActor;
 import com.brakassey.sunproject.inputs.RandomInput;
 import com.brakassey.sunproject.inputs.UserInput;
 
@@ -35,7 +36,7 @@ public class GameScreen implements Screen {
     private OrthographicCamera m_gui_camera;
 
     private List<Actor> m_actors;
-    Actor m_hero;
+    AnimatedActor m_hero;
 
     public GameScreen(Game game, TiledMap map) {
         m_game = game;
@@ -52,7 +53,7 @@ public class GameScreen implements Screen {
         m_gui_camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
         m_gui_camera.update();
 
-        m_hero = new Actor(this, new Texture("img/charsets/leef.png"));
+        m_hero = new AnimatedActor(this, new Texture(Gdx.files.internal("img/charsets/leef.png")), 4, 4);
         m_hero.setInput(m_input);
         m_hero.setSpeed(3.2f);
         m_hero.setOnTile(18, 18);
@@ -92,9 +93,9 @@ public class GameScreen implements Screen {
 
 
         // Objects
-        for (Actor a : m_actors)
+        for (Actor a : m_actors){
             a.draw(m_batch);
-
+        }
         m_batch.end();
 
         m_batch.setProjectionMatrix(m_gui_camera.combined);
