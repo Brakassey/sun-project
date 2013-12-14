@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="outdoor" tilewidth="16" tileheight="16">
+  <image source="../img/tilesets/outdoor.png" width="128" height="128"/>
+  <terraintypes>
+   <terrain name="Eau" tile="-1"/>
+   <terrain name="Sable" tile="-1"/>
+  </terraintypes>
+  <tile id="16" terrain=",,,1"/>
+  <tile id="17" terrain=",,1,"/>
+  <tile id="18" terrain=",,1,1"/>
+  <tile id="19" terrain=",1,,1"/>
+  <tile id="20" terrain="1,1,1,"/>
+  <tile id="21" terrain="1,1,,1"/>
+  <tile id="22" terrain="1,1,1,1"/>
+  <tile id="24" terrain=",1,,"/>
+  <tile id="25" terrain="1,,,"/>
+  <tile id="26" terrain="1,1,,"/>
+  <tile id="27" terrain="1,,1,"/>
+  <tile id="28" terrain="1,,1,1"/>
+  <tile id="29" terrain=",1,1,1"/>
+  <tile id="48" terrain=",,,0"/>
+  <tile id="49" terrain=",,0,"/>
+  <tile id="50" terrain=",,0,0"/>
+  <tile id="51" terrain=",0,,0"/>
+  <tile id="52" terrain="0,0,0,"/>
+  <tile id="53" terrain="0,0,,0"/>
+  <tile id="54" terrain="0,0,0,0"/>
+  <tile id="56" terrain=",0,,"/>
+  <tile id="57" terrain="0,,,"/>
+  <tile id="58" terrain="0,0,,"/>
+  <tile id="59" terrain="0,,0,"/>
+  <tile id="60" terrain="0,,0,0"/>
+  <tile id="61" terrain=",0,0,0"/>
+ </tileset>
+ <layer name="Calque de Tile 1" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzFlc1uwjAQhNNHKEUgRGgJidQGuEBapVJ/3v+xujlEGlk763XiqIdPPrDOeHYWuy6KohHqietZWAul0CbsuwjXGesJdKuEfXjuduKKfmP1od/h3A8TGXVjddgP9Lu0LvNbOXxrNUw3rNX8en23Sg3TDWs1v6m+c+Ub8/0oPBGeQdc6s+WXzffgaWtQwrdZVujX+r9N0fXOM+ud1ktL92DsXSl+9wuzUTJoHb2ZC5v1zuDu/LY1w2uSQU/4FL6dutYM70j/mW6v6KbeJxYpupYv5BbJr4OeenS9vAsfwpdBit8UXbZ3zGqOLss71MW6IavrTF2Wd6iLdcMZmn/ocw6/jBfhaGST4pdlqfEqvGXyG3tX8UzY5/C3nPmGZ0LdcKbGd5DdzUvMFb6Dlt+fIn7fafw69lq6ucH7+A8jLVj3
+  </data>
+ </layer>
+</map>
