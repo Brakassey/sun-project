@@ -58,7 +58,7 @@ public class GameScreen implements Screen {
         m_hero.setSpeed(3.2f);
         m_hero.setOnTile(18, 18);
 
-        Actor mogloo = new Actor(this, new Texture("img/charsets/mogloo.png"));
+        Actor mogloo = new AnimatedActor(this, new Texture("img/charsets/mogloo.png"), 4, 4);
         mogloo.setInput(new RandomInput());
         mogloo.setSpeed(1.2f);
         mogloo.setOnTile(10, 10);
