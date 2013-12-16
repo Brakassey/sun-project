@@ -59,17 +59,17 @@ public class GameScreen implements Screen {
         m_hero = new AnimatedActor(this, new Texture(Gdx.files.internal("img/charsets/leef.png")));
 
         m_hero.setInput(m_input);
-        m_hero.setSpeed(3.20f);
+        m_hero.setSpeed(3.2f);
         m_hero.setOnTile(18, 18);
 
         Actor mogloo = new AnimatedActor(this, new Texture("img/charsets/mogloo.png"));
         mogloo.setInput(new FollowInput(mogloo, m_hero));
-        mogloo.setSpeed(3.15f);
+        mogloo.setSpeed(3.2f);
         mogloo.setOnTile(10, 10);
 
         Actor mogloo2 = new AnimatedActor(this, new Texture("img/charsets/mogloo.png"));
         mogloo2.setInput(new FollowInput(mogloo2, mogloo));
-        mogloo2.setSpeed(3.10f);
+        mogloo2.setSpeed(3.2f);
         mogloo2.setOnTile(9, 9);
 
         Actor mogloo3 = new AnimatedActor(this, new Texture("img/charsets/mogloo.png"));

@@ -181,7 +181,15 @@ public class Actor {
 
     public void draw(SpriteBatch batch)
     {
+        float x = m_sprite.getX();
+        float y = m_sprite.getY();
+        m_sprite.setPosition(
+                ((int) (x * Config.WIN_DIV)) / (float) (Config.WIN_DIV),
+                ((int) (y * Config.WIN_DIV)) / (float) (Config.WIN_DIV));
+
         m_sprite.draw(batch);
+
+        m_sprite.setPosition(x, y);
     }
 
     public void action(Actor actor)
