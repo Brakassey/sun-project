@@ -2,61 +2,46 @@ package com.brakassey.sunproject.actors;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.brakassey.sunproject.Config;
 import com.brakassey.sunproject.screens.GameScreen;
 
 public class AnimatedActor extends Actor {
 
-	int        FRAME_COLS;
-    int        FRAME_ROWS;
-    Animation                       walkAnimation;
-    Texture                         tex;
-    SpriteBatch                     spriteBatch;
-    TextureRegion                   currentFrame;
-    String spriteAnime;
-    float stateTime;
+    private TextureRegion currentFrame;
+    private float stateTime;
     private TextureRegion walkFrame;
-	private TextureRegion[] walkUpFrames;
-	private TextureRegion[] walkDownFrames;
-	private TextureRegion[] walkRightFrames;
-	private TextureRegion[] walkLeftFrames;
+
+    private TextureRegion[] walkUpFrames = new TextureRegion[4];
+    private TextureRegion[] walkDownFrames = new TextureRegion[4];
+    private TextureRegion[] walkRightFrames = new TextureRegion[4];
+    private TextureRegion[] walkLeftFrames = new TextureRegion[4];
+
 	private Animation walkUpAnimation;
 	private Animation walkDownAnimation;
 	private Animation walkRightAnimation;
 	private Animation walkLeftAnimation;
 
-
-	public AnimatedActor(GameScreen gamescreen, Texture tex, int FRAME_COLS, int FRAME_ROWS) {
+	public AnimatedActor(GameScreen gamescreen, Texture tex) {
 		super(gamescreen, tex);
-		this.FRAME_COLS = FRAME_COLS;
-		this.FRAME_ROWS = FRAME_ROWS;
-		TextureRegion[][] tmp = TextureRegion.split(tex, tex.getWidth() /
-								FRAME_COLS, tex.getHeight() / FRAME_ROWS);
+		TextureRegion[][] tmp = TextureRegion.split(tex, Config.TILE_SIZE, Config.TILE_SIZE);
 
-		walkUpFrames = new TextureRegion[FRAME_COLS-1];
-		walkDownFrames = new TextureRegion[FRAME_COLS-1];
-		walkRightFrames = new TextureRegion[FRAME_COLS-1];
-		walkLeftFrames = new TextureRegion[FRAME_COLS-1];
+	    for (int j = 0; j < 4; ++j) {
+	        final int[] tab = {0, 1, 0, 2};
 
-		    for (int j = 0; j < FRAME_COLS - 1; j++) {
-		            walkUpFrames[j] = tmp[0][j];
-		            walkDownFrames[j] = tmp[1][j];
-		            walkRightFrames[j] = tmp[2][j];
-		            walkLeftFrames[j] = tmp[3][j];
-		    }
+            walkUpFrames[j] = tmp[0][tab[j]];
+            walkDownFrames[j] = tmp[1][tab[j]];
+            walkRightFrames[j] = tmp[2][tab[j]];
+            walkLeftFrames[j] = tmp[3][tab[j]];
+	    }
 
-		walkUpAnimation = new Animation(0.25f, walkUpFrames);
-		walkDownAnimation = new Animation(0.25f, walkDownFrames);
-		walkRightAnimation = new Animation(0.25f, walkRightFrames);
-		walkLeftAnimation = new Animation(0.25f, walkLeftFrames);
-		spriteBatch = new SpriteBatch();
+		walkUpAnimation = new Animation(Config.ANIM_SPEED, walkUpFrames);
+		walkDownAnimation = new Animation(Config.ANIM_SPEED, walkDownFrames);
+		walkRightAnimation = new Animation(Config.ANIM_SPEED, walkRightFrames);
+		walkLeftAnimation = new Animation(Config.ANIM_SPEED, walkLeftFrames);
 		stateTime = 0f;
 		walkFrame = walkDownAnimation.getKeyFrame(stateTime, true);
-		// TODO Auto-generated constructor stub
 	}
-
-
 
 	@Override
 	public void update(float delta){
@@ -95,6 +80,5 @@ public class AnimatedActor extends Actor {
         }
         getSprite().setRegion(currentFrame);
 	}
-
 
 }
