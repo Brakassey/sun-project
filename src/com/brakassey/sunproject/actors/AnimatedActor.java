@@ -1,6 +1,5 @@
 package com.brakassey.sunproject.actors;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -47,10 +46,10 @@ public class AnimatedActor extends Actor {
 		            walkLeftFrames[j] = tmp[3][j];
 		    }
 
-		walkUpAnimation = new Animation(0.025f, walkUpFrames);
-		walkDownAnimation = new Animation(0.025f, walkDownFrames);
-		walkRightAnimation = new Animation(0.025f, walkRightFrames);
-		walkLeftAnimation = new Animation(0.025f, walkLeftFrames);
+		walkUpAnimation = new Animation(0.25f, walkUpFrames);
+		walkDownAnimation = new Animation(0.25f, walkDownFrames);
+		walkRightAnimation = new Animation(0.25f, walkRightFrames);
+		walkLeftAnimation = new Animation(0.25f, walkLeftFrames);
 		spriteBatch = new SpriteBatch();
 		stateTime = 0f;
 		walkFrame = walkDownAnimation.getKeyFrame(stateTime, true);
@@ -61,36 +60,38 @@ public class AnimatedActor extends Actor {
 
 	@Override
 	public void update(float delta){
-        stateTime += Gdx.graphics.getDeltaTime()/getSpeed();
-		if (getInput() == null) return;
+        stateTime += delta * getSpeed();
 
-        getInput().update(delta);
-        switch (getInput().getDirection())
+		super.update(delta);
+
+        if (getInput() == null)
         {
-        case DOWN:
-	        currentFrame = walkDownAnimation.getKeyFrame(stateTime, true);
-	        walkFrame = walkDownFrames[0];
-            move(0, - delta * m_speed);
-            break;
-        case LEFT:
-            currentFrame = walkLeftAnimation.getKeyFrame(stateTime, true);
-            walkFrame = walkLeftFrames[0];
-            move(- delta * m_speed, 0);
-            break;
-        case RIGHT:
-	        currentFrame = walkRightAnimation.getKeyFrame(stateTime, true);
-	        walkFrame = walkRightFrames[0];
-            move(delta * m_speed, 0);
-            break;
-        case UP:
-	        currentFrame = walkUpAnimation.getKeyFrame(stateTime, true);
-	        walkFrame = walkUpFrames[0];
-            move(0, delta * m_speed);
-            break;
-        default:
-        	currentFrame = walkFrame;
-            break;
-
+            currentFrame = walkFrame;
+        }
+        else
+        {
+            switch (getInput().getDirection())
+            {
+            case DOWN:
+    	        currentFrame = walkDownAnimation.getKeyFrame(stateTime, true);
+    	        walkFrame = walkDownFrames[0];
+                break;
+            case LEFT:
+                currentFrame = walkLeftAnimation.getKeyFrame(stateTime, true);
+                walkFrame = walkLeftFrames[0];
+                break;
+            case RIGHT:
+    	        currentFrame = walkRightAnimation.getKeyFrame(stateTime, true);
+    	        walkFrame = walkRightFrames[0];
+                break;
+            case UP:
+    	        currentFrame = walkUpAnimation.getKeyFrame(stateTime, true);
+    	        walkFrame = walkUpFrames[0];
+                break;
+            default:
+            	currentFrame = walkFrame;
+                break;
+            }
         }
         getSprite().setRegion(currentFrame);
 	}

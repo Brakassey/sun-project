@@ -21,6 +21,8 @@ public class Actor {
 
     private boolean m_first_press_A;
 
+    private boolean m_moving;
+
     public Actor(GameScreen gamescreen, Texture tex) {
         m_gamescreen = gamescreen;
         m_texture = tex;
@@ -30,6 +32,7 @@ public class Actor {
         m_speed = 1;
 
         m_first_press_A = false;
+        m_moving = false;
     }
 
     public Input getInput()
@@ -79,12 +82,18 @@ public class Actor {
         m_speed = speed;
     }
 
+    public boolean isMoving()
+    {
+        return m_moving;
+    }
+
     public void update(float delta)
     {
         if (getInput() == null) return;
 
         getInput().update(delta);
 
+        m_moving = false;
         switch (getInput().getDirection())
         {
         case DOWN:
@@ -126,7 +135,10 @@ public class Actor {
 
             if (!m_gamescreen.isTileSolid(X, (int) (getY() + Config.HULL_SIDE))
              && !m_gamescreen.isTileSolid(X, (int) (getY() - Config.HULL_SIDE)))
+            {
                 m_sprite.translate(x, y);
+                m_moving = true;
+            }
         }
 
         else if (x < 0)
@@ -135,7 +147,10 @@ public class Actor {
 
             if (!m_gamescreen.isTileSolid(X, (int) (getY() + Config.HULL_SIDE))
              && !m_gamescreen.isTileSolid(X, (int) (getY() - Config.HULL_SIDE)))
+            {
                 m_sprite.translate(x, y);
+                m_moving = true;
+            }
         }
 
         if (y > 0)
@@ -144,7 +159,10 @@ public class Actor {
 
             if (!m_gamescreen.isTileSolid((int) (getX() + Config.HULL_SIDE), Y)
              && !m_gamescreen.isTileSolid((int) (getX() - Config.HULL_SIDE), Y))
+            {
                 m_sprite.translate(x, y);
+                m_moving = true;
+            }
         }
 
         else if (y < 0)
@@ -153,7 +171,10 @@ public class Actor {
 
             if (!m_gamescreen.isTileSolid((int) (getX() + Config.HULL_SIDE), Y)
              && !m_gamescreen.isTileSolid((int) (getX() - Config.HULL_SIDE), Y))
+            {
                 m_sprite.translate(x, y);
+                m_moving = true;
+            }
         }
 
     }
