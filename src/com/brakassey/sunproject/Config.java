@@ -15,4 +15,6 @@ public class Config {
     public static final float   HULL        = 0.4f;
     public static final float   HULL_SIDE   = 0.35f;
 
+    public static final float   ANIM_SPEED  = 0.4f;
+
 }

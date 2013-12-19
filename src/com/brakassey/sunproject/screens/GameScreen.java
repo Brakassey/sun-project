@@ -2,6 +2,8 @@ package com.brakassey.sunproject.screens;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.badlogic.gdx.Game;
@@ -18,6 +20,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.brakassey.sunproject.Config;
 import com.brakassey.sunproject.actors.Actor;
 import com.brakassey.sunproject.actors.AnimatedActor;
+import com.brakassey.sunproject.inputs.FollowInput;
 import com.brakassey.sunproject.inputs.RandomInput;
 import com.brakassey.sunproject.inputs.UserInput;
 
@@ -53,20 +56,32 @@ public class GameScreen implements Screen {
         m_gui_camera.position.set(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, 0);
         m_gui_camera.update();
 
-        m_hero = new AnimatedActor(this, new Texture(Gdx.files.internal("img/charsets/mogloo.png")), 4, 4);
+        m_hero = new AnimatedActor(this, new Texture(Gdx.files.internal("img/charsets/leef.png")));
 
         m_hero.setInput(m_input);
         m_hero.setSpeed(3.2f);
         m_hero.setOnTile(18, 18);
 
-        Actor mogloo = new AnimatedActor(this, new Texture("img/charsets/mogloo.png"), 4, 4);
-        mogloo.setInput(new RandomInput());
-        mogloo.setSpeed(1.2f);
+        Actor mogloo = new AnimatedActor(this, new Texture("img/charsets/mogloo.png"));
+        mogloo.setInput(new FollowInput(mogloo, m_hero));
+        mogloo.setSpeed(3.2f);
         mogloo.setOnTile(10, 10);
+
+        Actor mogloo2 = new AnimatedActor(this, new Texture("img/charsets/mogloo.png"));
+        mogloo2.setInput(new FollowInput(mogloo2, mogloo));
+        mogloo2.setSpeed(3.2f);
+        mogloo2.setOnTile(9, 9);
+
+        Actor mogloo3 = new AnimatedActor(this, new Texture("img/charsets/mogloo.png"));
+        mogloo3.setInput(new RandomInput());
+        mogloo3.setSpeed(1f);
+        mogloo3.setOnTile(8, 8);
 
         m_actors = new ArrayList<>();
         m_actors.add(m_hero);
         m_actors.add(mogloo);
+        m_actors.add(mogloo2);
+        m_actors.add(mogloo3);
     }
 
     @Override
@@ -82,7 +97,11 @@ public class GameScreen implements Screen {
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT) ;
 
         // Camera
-        m_camera.position.set(m_hero.getX(), m_hero.getY(), 0);
+        // NO IDEA HOW BUT DOES REMOVE TEXTURE GLITCHING
+        m_camera.position.set(
+                ((int) (m_hero.getX() * Config.WIN_DIV)) / (float) (Config.WIN_DIV) + 0.001f,
+                ((int) (m_hero.getY() * Config.WIN_DIV)) / (float) (Config.WIN_DIV) + 0.001f,
+                0);
         m_camera.update();
         m_map_renderer.setView(m_camera);
 
@@ -94,6 +113,16 @@ public class GameScreen implements Screen {
 
 
         // Objects
+        // Big sort of death to have a good Z positioning
+        Collections.sort(m_actors, new Comparator<Actor>() {
+            @Override
+            public int compare(Actor o1, Actor o2) {
+                float z = o2.getY() - o1.getY();
+                if (z == 0) return 0;
+                if (z < 0) return -1;
+                return 1; }
+        });
+        // Actually draw objects
         for (Actor a : m_actors){
             a.draw(m_batch);
         }
