@@ -47,10 +47,10 @@ public class AnimatedActor extends Actor {
 		            walkLeftFrames[j] = tmp[3][j];
 		    }
 
-		walkUpAnimation = new Animation(0.025f, walkUpFrames);
-		walkDownAnimation = new Animation(0.025f, walkDownFrames);
-		walkRightAnimation = new Animation(0.025f, walkRightFrames);
-		walkLeftAnimation = new Animation(0.025f, walkLeftFrames);
+		walkUpAnimation = new Animation(0.3f, walkUpFrames);
+		walkDownAnimation = new Animation(0.3f, walkDownFrames);
+		walkRightAnimation = new Animation(0.3f, walkRightFrames);
+		walkLeftAnimation = new Animation(0.3f, walkLeftFrames);
 		spriteBatch = new SpriteBatch();
 		stateTime = 0f;
 		walkFrame = walkDownAnimation.getKeyFrame(stateTime, true);
@@ -61,7 +61,7 @@ public class AnimatedActor extends Actor {
 
 	@Override
 	public void update(float delta){
-        stateTime += Gdx.graphics.getDeltaTime()/getSpeed();
+        stateTime += Gdx.graphics.getDeltaTime()*getSpeed();
 		if (getInput() == null) return;
 
         getInput().update(delta);
