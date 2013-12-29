@@ -87,12 +87,12 @@ public class GameScreen implements Screen {
     @Override
     public void render(float delta) {
 
-        // TODO Update game
+        // Update game
         for (Actor a : m_actors)
             a.update(delta);
 
 
-        // TODO Render game
+        // Render game
         Gdx.gl.glClearColor(0, 0, 0, 1) ;
         Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT) ;
 
