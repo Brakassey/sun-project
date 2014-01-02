@@ -1,7 +1,6 @@
 package com.brakassey.sunproject.utils;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
@@ -38,21 +37,12 @@ public class TextBox extends StyledTable {
 		label.draw(batch, parentAlpha);
 	}
 
-	@Override
-	public Actor hit(float x, float y) {
-		return null;
-	}
 
 	public void setText(String text) {
 		label.setText(text);
 	}
 
-	/*
-	 * public static class TextBoxStyle { public Drawable background; public
-	 * BitmapFont font; public Color fontColor; public int padX; public int
-	 * padY; public TextBoxStyle() { this.background = null; this.font = null;
-	 * this.fontColor = null; this.padX = 0; this.padY = 0; }
-	 */
+
 	public void setStyle(TableStyle style) {
 		this.style = style;
 	}

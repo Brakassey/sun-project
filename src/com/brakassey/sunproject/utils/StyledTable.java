@@ -2,7 +2,6 @@ package com.brakassey.sunproject.utils;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 
@@ -13,13 +12,7 @@ public class StyledTable extends Table {
 		this.style = style;
 	}
 
-	/*
-	 * protected static TableStyle getDefaultTexture() { FileHandle handle =
-	 * Gdx.files.internal("data/dialogue_box.png"); if (! handle.exists())
-	 * return new TableStyle(); NinePatch patch = new NinePatch(new
-	 * Texture(handle), 16, 16, 16, 16); TableStyle style = new TableStyle();
-	 * style.background = patch; return style; }
-	 */
+
 	public TableStyle getStyle() {
 		return style;
 	}
@@ -44,8 +37,4 @@ public class StyledTable extends Table {
 		}
 	}
 
-	public Actor hit(float x, float y) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

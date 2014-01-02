@@ -1,5 +1,6 @@
 package com.brakassey.sunproject.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
@@ -12,7 +13,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
-import com.brakassey.sunproject.SunGame;
 import com.brakassey.sunproject.actors.BattleActor;
 import com.brakassey.sunproject.utils.BattleEngine;
 import com.brakassey.sunproject.utils.StyledTable;
@@ -25,23 +25,18 @@ public class CombatScreen extends InputAdapter implements Screen {
 	TextureAtlas atlas;
 	Stage stage;
 	Stage uiStage;
-	SunGame game;
+	Game game;
     private SpriteBatch m_batch = new SpriteBatch();
 
-	public CombatScreen(SunGame game) {
+	public CombatScreen(Game game) {
 		this.game = game;
         m_batch.enableBlending();
         m_batch.setBlendFunction(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
 	}
 
-	/*
-	 * public CombatScreen (ArrayList<Player> party, String area) { mEngine =
-	 * new BattleEngine(party, area); }
-	 */
 	public void newBattle(String area) {
 		BattleEngine.setScreenSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		atlas = new TextureAtlas(Gdx.files.internal("atlas/spritepack.atlas"));
-		engine = new BattleEngine(area, atlas);
+		engine = new BattleEngine(area);
 		if (stage == null) {
 			stage = new Stage(Gdx.graphics.getWidth(),
 					Gdx.graphics.getHeight(), false);
@@ -86,7 +81,6 @@ public class CombatScreen extends InputAdapter implements Screen {
 		camera.setToOrtho(false, Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
 		stage.setCamera(camera);
-		atlas = game.manager.get("data/sprites/spritepack.atlas", TextureAtlas.class);
 		NinePatch patch = atlas.createPatch("dialog-box");
 		StyledTable.TableStyle textBoxStyle = new StyledTable.TableStyle();
 		textBoxStyle.background = new NinePatchDrawable(patch);

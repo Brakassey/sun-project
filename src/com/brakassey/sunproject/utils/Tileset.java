@@ -20,8 +20,7 @@ public class Tileset {
 		this.width = (texture.getRegionWidth() - margin) / (tileWidth + spacing);
 		this.height = (texture.getRegionHeight() - margin) / (tileHeight + spacing);
 		this.tiles = new TextureRegion[width * height];
-		// TextureRegion.split() would've worked just fine but it doesn't
-		// support margins or spacing so I wrote this instead.
+
 		for (int y = 0; y < height; ++y) {
 			for (int x = 0; x < width; ++x) {
 				int tileX = x * (tileWidth + spacing) + margin;

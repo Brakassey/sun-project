@@ -5,8 +5,6 @@ import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Random;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.brakassey.sunproject.actors.BattleActor;
 
 
@@ -17,8 +15,6 @@ public class BattleEngine {
 	private BattleActor mCurrentBattleActor;
 	private static int width = 0;
 	private static int height = 0;
-	private int BORDER = 5;
-	private TextureAtlas atlas;
 
 	public BattleEngine(ArrayList<BattleActor> party,
 			ArrayList<BattleActor> enemies) {
@@ -31,22 +27,16 @@ public class BattleEngine {
 		// TODO: depending on the area generate enemies accordingly to that area
 	}
 
-	public BattleEngine(String area, TextureAtlas atlas) {
+	public BattleEngine(String area) {
 		// TODO: depending on the area generate enemies accordingly to that area
 		mParty = new ArrayList<BattleActor>();
-		// mParty.add(BattleActor);
-		this.atlas = atlas;
 		createEnemies(area);
-		initPositions();
 		initQueue();
 	}
 
 	public BattleActor makeActor() {
-		Tileset tileset = new Tileset(atlas.findRegion("ghost"), 40, 46, 0, 0);
-		Animation animIdle = new Animation(0.15f, tileset.getTileRange( tileset.coordToIndex(0, 2), 3));
-		animIdle.setPlayMode(Animation.LOOP_PINGPONG);
+		// TODO
 		BattleActor actor = new BattleActor();
-		actor.animations.put("idle", animIdle);
 		return actor;
 	}
 
@@ -64,59 +54,8 @@ public class BattleEngine {
 		mBattleActorQueue = new PriorityQueue<BattleActor>(cap, new StatsComparator());
 	}
 
-	private void initPositions() {
-		int size = mParty.size();
-		float fullWidth = BORDER;
-		float fullHeight = 0;
-		float startY = 0;
-		// set up party
-		for (BattleActor p : mParty) {
-			fullWidth += p.getWidth() / 2;
-			fullHeight += p.getHeight() / 2;
-		}
-		if (size - 1 >= 0) {
-			fullWidth += mParty.get(size - 1).getWidth() / 2;
-			fullHeight += mParty.get(size - 1).getHeight() / 2;
-			startY = (height / 2) + (fullHeight / 2);
-		}
-		for (BattleActor p : mParty) {
-			p.setInBattle(true); // makes a backup of the world coordinates
-			p.setX(BattleEngine.width - fullWidth);
-			p.setY(startY);
-			fullWidth -= p.getWidth() / 2;
-			startY -= p.getHeight() / 2;
-		}
-		// set up enemies
-		fullWidth = BORDER;
-		fullHeight = 0;
-		size = mEnemies.size();
-		for (BattleActor p : mEnemies) {
-			fullWidth += p.getWidth() / 2;
-			fullHeight += p.getHeight() / 2;
-		}
-		fullWidth += mEnemies.get(size - 1).getWidth() / 2;
-		fullHeight += mEnemies.get(size - 1).getHeight() / 2;
-		startY = (height / 2) + (fullHeight / 2);
-		for (BattleActor e : mEnemies) {
-			e.setInBattle(true);
-			e.setX(fullWidth);
-			e.setY(startY);
-			fullWidth -= e.getWidth() / 2;
-			startY -= e.getHeight() / 2;
-		}
-	}
 
-	private void getFullWidth() {
-	}
 
-	/*
-	 * public boolean run() { while(true) { mBattleActorQueue.clear();
-	 * mBattleActorQueue.addAll(mParty); mBattleActorQueue.addAll(mEnemies);
-	 * Iterator<BattleActor> it = mBattleActorQueue.iterator();
-	 * while(it.hasNext()) { BattleActor p = it.next(); try { this.wait(); }
-	 * catch (InterruptedException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } it.remove(); } } }
-	 */
 	public void nextTurn() {
 		if (mBattleActorQueue.isEmpty()) {
 			mBattleActorQueue.addAll(mParty);
@@ -129,10 +68,7 @@ public class BattleEngine {
 	public void executeAction(String action, BattleActor BattleActor) {
 	}
 
-	public void executeActionAt(int pos, BattleActor BattleActor) {
-		// mCurrentBattleActor.executeAction(pos, BattleActor);
-	}
-
+	
 	public boolean isFinished() {
 		Iterator<BattleActor> it = mEnemies.iterator();
 		while (it.hasNext()) {

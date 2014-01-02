@@ -6,15 +6,14 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.brakassey.sunproject.screens.MenuScreen;
 
 public class SunGame extends Game {
-	
-	 public AssetManager manager;
 
-    @Override
-    public void create() {
-    	 Gdx.input.setCatchBackKey(true);
-    	 manager = new AssetManager();
-    	// manager.setLoader(Map.class, new MapLoader(new InternalFileHandleResolver()));
-        setScreen(new MenuScreen(this));
-    }
+	public AssetManager manager;
+
+	@Override
+	public void create() {
+		Gdx.input.setCatchBackKey(true);
+		manager = new AssetManager();
+		setScreen(new MenuScreen(this));
+	}
 
 }
