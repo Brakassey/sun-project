@@ -1,207 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>rpg-android/assets/data/sprites/spritepack.atlas in libgdx-lpc-test/libgdx-lpc-test:master - Gitorious</title>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-      <link href="/dist/bootstrap/css/bootstrap.min.css?1387810495" rel="stylesheet" type="text/css">
-      <link href="/dist/bootstrap/css/bootstrap-responsive.min.css?1387810495" rel="stylesheet" type="text/css">
-      <link href="/dist/css/gitorious3.min.css?1387810495" rel="stylesheet" type="text/css">
-      <link href="/ui3/js/lib/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" type="text/css">
-      <link href="/assets/issues/application.css" rel="stylesheet" type="text/css">
-    
-      <meta class="csrf-param" content="authenticity_token" name="csrf-param" data-gts-env-csrf-param="authenticity_token">
-      <meta class="csrf-token" content="zmzHAdoUNEqaXO4F4Aw1ImsfnQ0JqgD9dJFDtcW/OsQ=" name="csrf-token" data-gts-env-csrf-token="zmzHAdoUNEqaXO4F4Aw1ImsfnQ0JqgD9dJFDtcW/OsQ=">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-52238-3']);
-_gaq.push(['_setDomainName', '.gitorious.org'])
-_gaq.push(['_trackPageview']);
-(function() {
-   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
-})();
-</script>
-  </head>
-  <body>
-    <div class="page-wrapper">
-      <div class="page-content">
-        <div class="gts-masthead navbar">
-          <div class="navbar-inner">
-            <div class="container">
-              <a href="/" class="gts-logo"><img src="/dist/images/gitorious2013.png" alt="Gitorious" title="Gitorious"></a>
-              <ul class="nav">
-                <li>
-                  <a href="/activities">Activities</a>
-                </li>
-                <li>
-                  <a href="/projects">Projects</a>
-                </li>
-                <li>
-                  <a href="/groups">Teams</a>
-                </li>
-                <li>
-                  <a href="/about">About</a>
-                </li>
-              </ul>
-              <div class="pull-right">
-                <form action="/search" class="navbar-search pull-left" method="get">
-                  <input type="search" placeholder="Search" class="search-query span2" name="q">
-                </form>
-                <div class="pull-right btn-group login_button">
-                  <a href="/login" class="btn btn-inverse">
-                    <i class="icon-user icon-white"></i> Sign in
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-          <div class="gts-site-header" data-gts-env-repository-view-state-path="/users/view_state/repository/126081.json">
-  <div class="container">
-    <div class="row">
-                <h2 class="span">
-            <a href="/libgdx-lpc-test">libgdx-lpc-test</a> /
-            <a class="gts-repository-name-ph" href="/libgdx-lpc-test/libgdx-lpc-test">libgdx-lpc-test</a>
-          </h2>
-
-    </div>
-    <div class="row">
-      <div class="span">
-                <div class="btn-group gts-repo-urls">
-          <a class="btn gts-repo-url active" href="git@gitorious.org:libgdx-lpc-test/libgdx-lpc-test.git">SSH</a>
-          <a class="btn gts-repo-url" href="https://git.gitorious.org/libgdx-lpc-test/libgdx-lpc-test.git">HTTPS</a>
-          <a class="btn gts-repo-url" href="git://gitorious.org/libgdx-lpc-test/libgdx-lpc-test.git">Git</a>
-          <input class="span4 gts-current-repo-url gts-select-onfocus" type="url" value="git@gitorious.org:libgdx-lpc-test/libgdx-lpc-test.git">
-          <button data-toggle="collapse" data-target="#repo-url-help" class="gts-repo-url-help btn">?</button>
-        </div>
-
-      </div>
-                <div class="pull-right">
-                      <a href="/libgdx-lpc-test/libgdx-lpc-test/archive/9f876495e95130ff04611eb6947f9651b02d88d9.tar.gz" class="btn gts-download" rel="tooltip" data-original-title="Download 9f87649 as .tar.gz">
-            <i class="icon icon-download"></i> Download
-          </a>
-
-            <div class="gts-watch-repository-ph gts-placeholder"></div>
-            <div class="gts-clone-repository-ph gts-placeholder"></div>
-          </div>
-
-    </div>
-    <div class="collapse gts-help row" id="repo-url-help">
-                <div class="alert alert-info span pull-right">
-            <p>
-              To <strong>clone</strong> this repository:
-            </p>
-            <pre class="prettyprint">git clone git@gitorious.org:libgdx-lpc-test/libgdx-lpc-test.git</pre>
-            <p>
-              To <strong>push</strong> to this repository:
-            </p>
-            <pre class="prettyprint"># Add a new remote
-git remote add origin git@gitorious.org:libgdx-lpc-test/libgdx-lpc-test.git
-
-# Push the master branch to the newly added origin, and configure
-# this remote and branch as the default:
-git push -u origin master
-
-# From now on you can push master to the "origin" remote with:
-git push</pre>
-          </div>
-
-    </div>
-    <div class="row gts-description">
-      <div class="span gts-repository-description-ph">
-        <div class="gts-markup"><p>Practicing for LPC</p></div>
-      </div>
-    </div>
-                <ul class="nav nav-tabs gts-header-nav gts-pjax" data-gts-active="source">
-            <li class="active"><a href="/libgdx-lpc-test/libgdx-lpc-test/source/master:">Source code</a></li><li><a href="/libgdx-lpc-test/libgdx-lpc-test/activities">Activities</a></li><li><a href="/libgdx-lpc-test/libgdx-lpc-test/commits/9f876495e95130ff04611eb6947f9651b02d88d9">Commits</a></li><li><a href="/libgdx-lpc-test/libgdx-lpc-test/merge_requests">Merge requests <span class="count gts-mr-count-ph"></span></a></li><li><a href="/libgdx-lpc-test/libgdx-lpc-test/community">Community</a></li>
-            <li class="gts-repository-admin-ph gts-placeholder"></li>
-            <li class="gts-request-merge-ph gts-placeholder"></li>
-          </ul>
-
-  </div>
-</div>
-
-          <div class="container gts-body" id="gts-pjax-container">
-  <div class="gts-file gts-browser">
-    <div class="gts-ref-selector-ph"></div>
-    <ul class="pull-right gts-blob-view">
-      <li class="active">Blob content</li>
-      <li><a href="/libgdx-lpc-test/libgdx-lpc-test/blame/9f876495e95130ff04611eb6947f9651b02d88d9:rpg-android/assets/data/sprites/spritepack.atlas">Blame</a></li>
-      <li><a href="/libgdx-lpc-test/libgdx-lpc-test/history/9f876495e95130ff04611eb6947f9651b02d88d9:rpg-android/assets/data/sprites/spritepack.atlas">History</a></li>
-      <li><a href="/libgdx-lpc-test/libgdx-lpc-test/raw/9f876495e95130ff04611eb6947f9651b02d88d9:rpg-android/assets/data/sprites/spritepack.atlas">Raw blob</a></li>
-    </ul>
-              <ul class="breadcrumb">
-            <li><a href="/libgdx-lpc-test/libgdx-lpc-test/source/9f876495e95130ff04611eb6947f9651b02d88d9:"><i class="icon icon-file"></i> /</a></li>
-            <li><a href="/libgdx-lpc-test/libgdx-lpc-test/source/9f876495e95130ff04611eb6947f9651b02d88d9:rpg-android">rpg-android<span class="divider">/</span></a></li><li><a href="/libgdx-lpc-test/libgdx-lpc-test/source/9f876495e95130ff04611eb6947f9651b02d88d9:rpg-android/assets">assets<span class="divider">/</span></a></li><li><a href="/libgdx-lpc-test/libgdx-lpc-test/source/9f876495e95130ff04611eb6947f9651b02d88d9:rpg-android/assets/data">data<span class="divider">/</span></a></li><li><a href="/libgdx-lpc-test/libgdx-lpc-test/source/9f876495e95130ff04611eb6947f9651b02d88d9:rpg-android/assets/data/sprites">sprites<span class="divider">/</span></a></li><li class="active">spritepack.atlas</li>
-          </ul>
-
-    <pre class=" prettyprint linenums"><ol class="linenums gts-lines"><li class="L1"><span class="line"> </span></li><li class="L2"><span class="line">spritepack.png</span></li><li class="L3"><span class="line">format: RGBA8888</span></li><li class="L4"><span class="line">filter: Nearest,Nearest</span></li><li class="L5"><span class="line">repeat: none</span></li><li class="L6"><span class="line">scroll</span></li><li class="L7"><span class="line">  rotate: false</span></li><li class="L8"><span class="line">  xy: 1, 303</span></li><li class="L9"><span class="line">  size: 544, 320</span></li><li class="L10"><span class="line">  orig: 544, 320</span></li><li class="L11"><span class="line">  offset: 0, 0</span></li><li class="L12"><span class="line">  index: -1</span></li><li class="L13"><span class="line">veggies</span></li><li class="L14"><span class="line">  rotate: false</span></li><li class="L15"><span class="line">  xy: 1, 173</span></li><li class="L16"><span class="line">  size: 512, 128</span></li><li class="L17"><span class="line">  orig: 512, 128</span></li><li class="L18"><span class="line">  offset: 0, 0</span></li><li class="L19"><span class="line">  index: -1</span></li><li class="L20"><span class="line">dialog-box</span></li><li class="L21"><span class="line">  rotate: false</span></li><li class="L22"><span class="line">  xy: 1, 107</span></li><li class="L23"><span class="line">  size: 512, 64</span></li><li class="L24"><span class="line">  split: 28, 30, 8, 7</span></li><li class="L25"><span class="line">  orig: 512, 64</span></li><li class="L26"><span class="line">  offset: 0, 0</span></li><li class="L27"><span class="line">  index: -1</span></li><li class="L28"><span class="line">ghost</span></li><li class="L29"><span class="line">  rotate: false</span></li><li class="L30"><span class="line">  xy: 547, 367</span></li><li class="L31"><span class="line">  size: 256, 256</span></li><li class="L32"><span class="line">  orig: 256, 256</span></li><li class="L33"><span class="line">  offset: 0, 0</span></li><li class="L34"><span class="line">  index: -1</span></li><li class="L35"><span class="line">list-box</span></li><li class="L36"><span class="line">  rotate: false</span></li><li class="L37"><span class="line">  xy: 1, 23</span></li><li class="L38"><span class="line">  size: 145, 82</span></li><li class="L39"><span class="line">  split: 33, 36, 8, 7</span></li><li class="L40"><span class="line">  orig: 145, 82</span></li><li class="L41"><span class="line">  offset: 0, 0</span></li><li class="L42"><span class="line">  index: -1</span></li><li class="L43"><span class="line">list-selection</span></li><li class="L44"><span class="line">  rotate: false</span></li><li class="L45"><span class="line">  xy: 547, 333</span></li><li class="L46"><span class="line">  size: 150, 32</span></li><li class="L47"><span class="line">  orig: 150, 32</span></li><li class="L48"><span class="line">  offset: 0, 0</span></li><li class="L49"><span class="line">  index: -1</span></li><li class="L50"><span class="line">chests</span></li><li class="L51"><span class="line">  rotate: false</span></li><li class="L52"><span class="line">  xy: 805, 527</span></li><li class="L53"><span class="line">  size: 64, 96</span></li><li class="L54"><span class="line">  orig: 64, 96</span></li><li class="L55"><span class="line">  offset: 0, 0</span></li><li class="L56"><span class="line">  index: -1</span></li><li class="L57"><span class="line">widget-background</span></li><li class="L58"><span class="line">  rotate: false</span></li><li class="L59"><span class="line">  xy: 1, 1</span></li><li class="L60"><span class="line">  size: 130, 20</span></li><li class="L61"><span class="line">  split: 5, 4, 5, 4</span></li><li class="L62"><span class="line">  orig: 130, 20</span></li><li class="L63"><span class="line">  offset: 0, 0</span></li><li class="L64"><span class="line">  index: -1</span></li><li class="L65"><span class="line">button-down</span></li><li class="L66"><span class="line">  rotate: false</span></li><li class="L67"><span class="line">  xy: 148, 73</span></li><li class="L68"><span class="line">  size: 32, 32</span></li><li class="L69"><span class="line">  split: 4, 4, 4, 4</span></li><li class="L70"><span class="line">  orig: 32, 32</span></li><li class="L71"><span class="line">  offset: 0, 0</span></li><li class="L72"><span class="line">  index: -1</span></li><li class="L73"><span class="line">button-up</span></li><li class="L74"><span class="line">  rotate: false</span></li><li class="L75"><span class="line">  xy: 699, 333</span></li><li class="L76"><span class="line">  size: 32, 32</span></li><li class="L77"><span class="line">  split: 4, 4, 4, 4</span></li><li class="L78"><span class="line">  orig: 32, 32</span></li><li class="L79"><span class="line">  offset: 0, 0</span></li><li class="L80"><span class="line">  index: -1</span></li></ol></pre>
-  </div>
-</div>
-
-      </div>
-    </div>
-    <div class="footer">
-      
-<div class="container">
-  <p class="pull-right gts-powered-by">
-    <a href="http://getgitorious.com">
-      <img alt="Powered by Gitorious" src="/assets/poweredby.png" title="Powered by Gitorious">
-    </a>
-  </p>
-  <div class="row-fluid">
-      <div class="span3">
-        <ul>
-          <li><a href="/about">About Gitorious</a></li>
-          <li><a href="http://groups.google.com/group/gitorious">Discussion group</a></li>
-          <li><a href="http://blog.gitorious.org">Blog</a></li>
-        </ul>
-      </div>
-      <div class="span3">
-        <ul>
-          <li><a href="http://en.gitorious.org/tos">Terms of Service</a></li>
-          <li><a href="http://en.gitorious.org/privacy_policy">Privacy Policy</a></li>
-          <li><a href="http://gitorious.com">Professional Gitorious Services</a></li>
-        </ul>
-      </div>
-      <div class="span3">
-        <ul>
-          <li><a href="http://en.gitorious.org/security">Security</a></li>
-        </ul>
-      </div>
-  </div>
-  <p>
-    Gitorious is free software licensed under
-    the <a href="http://www.gnu.org/licenses/agpl-3.0.html">GNU Affero
-      General Public License (AGPL)</a> unless noted otherwise.
-  </p>
-  <p class="gts-com-plug">
-    <a href="http://gitorious.com">Professional Gitorious services</a> - Git
-    hosting at your company, custom features, support and more.
-    <a href="http://gitorious.com">gitorious.com</a>.
-  </p>
-</div>
-
-    </div>
-    <script data-gts-env-user-view-state-path="/users/view_state.json"></script>
-      <script
-        data-gts-env-repository-refs-url="/libgdx-lpc-test/libgdx-lpc-test/refs"
-        data-gts-env-commit-url-template="/libgdx-lpc-test/libgdx-lpc-test/commit/#{oid}">
-      </script>
-      <script src="/dist/js/gitorious3.min.js?1387810495"></script>
-      <script src="/ui3/js/lib/jquery-ui/ui/jquery.ui.menu.js"></script>
-      <script src="/ui3/js/lib/jquery-ui/ui/jquery.ui.autocomplete.js"></script>
-      <script src="/ui3/js/lib/jquery-ui/ui/jquery.ui.datepicker.js"></script>
-      <script src="/assets/issues/application.js"></script>
-    
-    
-    <script>
-      $(function() { $('.alert').append('<a class="close" data-dismiss="alert" href="#">&times;</a>').alert(); });
-      gts.enableJS(document.documentElement);
-    </script>
-  </body>
-</html>
+spritepack.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+scroll
+rotate: false
+xy: 1, 303
+size: 544, 320
+orig: 544, 320
+offset: 0, 0
+index: -1
+veggies
+rotate: false
+xy: 1, 173
+size: 512, 128
+orig: 512, 128
+offset: 0, 0
+index: -1
+dialog-box
+rotate: false
+xy: 1, 107
+size: 512, 64
+split: 28, 30, 8, 7
+orig: 512, 64
+offset: 0, 0
+index: -1
+ghost
+rotate: false
+xy: 547, 367
+size: 256, 256
+orig: 256, 256
+offset: 0, 0
+index: -1
+list-box
+rotate: false
+xy: 1, 23
+size: 145, 82
+split: 33, 36, 8, 7
+orig: 145, 82
+offset: 0, 0
+index: -1
+list-selection
+rotate: false
+xy: 547, 333
+size: 150, 32
+orig: 150, 32
+offset: 0, 0
+index: -1
+chests
+rotate: false
+xy: 805, 527
+size: 64, 96
+orig: 64, 96
+offset: 0, 0
+index: -1
+widget-background
+rotate: false
+xy: 1, 1
+size: 130, 20
+split: 5, 4, 5, 4
+orig: 130, 20
+offset: 0, 0
+index: -1
+button-down
+rotate: false
+xy: 148, 73
+size: 32, 32
+split: 4, 4, 4, 4
+orig: 32, 32
+offset: 0, 0
+index: -1
+button-up
+rotate: false
+xy: 699, 333
+size: 32, 32
+split: 4, 4, 4, 4
+orig: 32, 32
+offset: 0, 0
+index: -1
