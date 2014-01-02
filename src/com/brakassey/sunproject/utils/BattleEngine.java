@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Random;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.brakassey.sunproject.actors.BattleActor;
 
 
@@ -36,7 +38,7 @@ public class BattleEngine {
 
 	public BattleActor makeActor() {
 		// TODO
-		BattleActor actor = new BattleActor();
+		BattleActor actor = new BattleActor( new Texture(Gdx.files.internal("img/charsets/leef.png")));
 		return actor;
 	}
 

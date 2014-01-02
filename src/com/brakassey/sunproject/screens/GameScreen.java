@@ -31,7 +31,7 @@ public class GameScreen implements Screen {
 
     private UserInput m_input = new UserInput();
     private SpriteBatch m_batch = new SpriteBatch();
-
+    private int randNumber;
     private TiledMap m_map;
     private MapRenderer m_map_renderer;
 
@@ -138,6 +138,13 @@ public class GameScreen implements Screen {
         m_input.renderLayout(m_batch);
 
         m_batch.end();
+        
+        if(m_hero.isMoving()){
+        	randNumber = (int)( Math.random()*100);
+        	if(randNumber > 98){
+        		m_game.setScreen(new CombatScreen(m_game));
+        	}   	
+        }
     }
 
     @Override

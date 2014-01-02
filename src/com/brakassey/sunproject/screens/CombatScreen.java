@@ -81,13 +81,14 @@ public class CombatScreen extends InputAdapter implements Screen {
 		camera.setToOrtho(false, Gdx.graphics.getWidth(),
 				Gdx.graphics.getHeight());
 		stage.setCamera(camera);
+		atlas = new TextureAtlas(Gdx.files.internal("img/atlas/spritepack.atlas"));
 		NinePatch patch = atlas.createPatch("dialog-box");
 		StyledTable.TableStyle textBoxStyle = new StyledTable.TableStyle();
 		textBoxStyle.background = new NinePatchDrawable(patch);
 		textBoxStyle.font = new BitmapFont();
 		textBoxStyle.padX = 8;
 		textBoxStyle.padY = 4;
-		TextBox textBox = new TextBox("This is a test....", textBoxStyle);
+		TextBox textBox = new TextBox("Nouveau combat !!!", textBoxStyle);
 		textBox.setWidth(Gdx.graphics.getWidth());
 		textBox.setHeight(Gdx.graphics.getHeight() / 4);
 		uiStage.addActor(textBox);
@@ -96,6 +97,7 @@ public class CombatScreen extends InputAdapter implements Screen {
 		input.addProcessor(stage);
 		Gdx.input.setInputProcessor(input);
 		newBattle("grassland");
+		textBox.setText(engine.getEnemies().size()+" enemis apparaissent !!");
 	}
 
 	@Override

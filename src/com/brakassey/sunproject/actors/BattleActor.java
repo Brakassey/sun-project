@@ -1,32 +1,30 @@
 package com.brakassey.sunproject.actors;
 
-import java.util.HashMap;
-import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.brakassey.sunproject.Config;
 import com.brakassey.sunproject.utils.Stats;
 
 public class BattleActor extends Actor {
 	public static final int stateIdle = 1;
 	public static final int stateAttacking = 2;
 	public static final int stateCasting = 3;
-	public final HashMap<String, Animation> animations;
-	private Animation currentAnimation;
-	private float animTime;
+    private Texture m_texture;
+    private Sprite m_sprite;
 	private int state;
 	private Stats stats;
 
-	public BattleActor() {
-		this.animations = new HashMap<String, Animation>();
-		this.currentAnimation = null;
-		this.animTime = 0;
+	public BattleActor(Texture tex) {
+		m_texture = tex;
+		m_sprite = new Sprite(m_texture, Config.TILE_SIZE, Config.TILE_SIZE);
+		m_sprite.setScale(Config.TILE_SCALE);
 	}
 
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
-		if (currentAnimation == null)
-			return;
-		batch.draw(currentAnimation.getKeyFrame(animTime), getX(), getY());
+
 	}
 
 	public int getState() {
@@ -39,12 +37,7 @@ public class BattleActor extends Actor {
 	}
 
 	private void updateAnimations() {
-		animTime = 0;
-		switch (state) {
-		case stateIdle:
-			currentAnimation = animations.get("idle");
-			break;
-		}
+
 	}
 
 	public int getStat(String name) {
@@ -60,19 +53,5 @@ public class BattleActor extends Actor {
 	}
 
 	public void executeAction(String action, BattleActor target) {
-	}
-
-	public void executeAction(int pos, BattleActor target) {
-		/*
-		 * if (pos >= mActions.size()) return; Action a = mActions.get(pos);
-		 * a.execute();
-		 */
-	}
-
-	public void setInBattle(boolean inBattle) {
-		/*
-		 * if (inBattle) { this._x = this.x; this._y = this.y; } else { this.x =
-		 * this._x; this.y = this._y; }
-		 */
 	}
 }
