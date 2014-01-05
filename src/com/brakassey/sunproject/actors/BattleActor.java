@@ -18,7 +18,7 @@ public class BattleActor extends Actor {
 	private int state;
 	private Stats stats;
 	private CombatScreen m_combatscreen;
-	private TextureRegion[] actorTR;
+	private TextureRegion[] actorTR = new TextureRegion[4];;
 
 	// Constructor for heroes
 	public BattleActor(CombatScreen combatscreen, Texture tex) {
@@ -40,12 +40,6 @@ public class BattleActor extends Actor {
 
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
-		float x = m_sprite.getX();
-        float y = m_sprite.getY();
-        m_sprite.setPosition(
-                ((int) (x * Config.WIN_DIV)) / (float) (Config.WIN_DIV),
-                ((int) (y * Config.WIN_DIV)) / (float) (Config.WIN_DIV));
-
         m_sprite.draw(batch);
 
 	}
