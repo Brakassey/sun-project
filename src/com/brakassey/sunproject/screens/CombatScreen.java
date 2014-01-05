@@ -36,7 +36,7 @@ public class CombatScreen extends InputAdapter implements Screen {
 
 	public void newBattle(String area) {
 		BattleEngine.setScreenSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		engine = new BattleEngine(area);
+		engine = new BattleEngine(this, area);
 		if (stage == null) {
 			stage = new Stage(Gdx.graphics.getWidth(),
 					Gdx.graphics.getHeight(), false);

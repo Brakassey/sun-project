@@ -7,16 +7,21 @@ import java.util.Random;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.brakassey.sunproject.Config;
 import com.brakassey.sunproject.actors.BattleActor;
-
+import com.brakassey.sunproject.screens.CombatScreen;
 
 public class BattleEngine {
 	private ArrayList<BattleActor> mParty;
 	private ArrayList<BattleActor> mEnemies;
 	private PriorityQueue<BattleActor> mBattleActorQueue;
 	private BattleActor mCurrentBattleActor;
+	private CombatScreen m_combatscreen;
 	private static int width = 0;
 	private static int height = 0;
+	private BattleActor m_hero;
+	private BattleActor mogloo;
 
 	public BattleEngine(ArrayList<BattleActor> party,
 			ArrayList<BattleActor> enemies) {
@@ -25,38 +30,63 @@ public class BattleEngine {
 		initQueue();
 	}
 
-	public BattleEngine(ArrayList<BattleActor> party, String area) {
+	public BattleEngine(CombatScreen combatscreen,
+			ArrayList<BattleActor> party, String area) {
 		// TODO: depending on the area generate enemies accordingly to that area
+		m_combatscreen = combatscreen;
+		mParty = party;
+		createEnemies(area);
+		initQueue();
 	}
-
-	public BattleEngine(String area) {
+	
+	// Main constructor
+	public BattleEngine(CombatScreen combatscreen, String area) {
 		// TODO: depending on the area generate enemies accordingly to that area
+		m_combatscreen = combatscreen;
+
+		m_hero = new BattleActor(m_combatscreen, new Texture(
+				Gdx.files.internal("img/battle_actors/heroes/leef.png")));
+		mogloo = new BattleActor(m_combatscreen, new Texture(
+				Gdx.files.internal("img/battle_actors/heroes/mogloo.png")));
 		mParty = new ArrayList<BattleActor>();
+		mParty.add(m_hero);
+		mParty.add(mogloo);
 		createEnemies(area);
 		initQueue();
 	}
 
-	public BattleActor makeActor() {
-		// TODO
-		BattleActor actor = new BattleActor( new Texture(Gdx.files.internal("img/charsets/leef.png")));
+	public BattleActor makeActor(TextureRegion[] enemiTR) {
+		BattleActor actor = new BattleActor(enemiTR);
 		return actor;
 	}
 
 	private void createEnemies(String area) {
-		int rand = new Random().nextInt(5) + 1;
+		
+		TextureRegion[][] tmp = TextureRegion.split(
+				new Texture(Gdx.files
+						.internal("img/battle_actors/enemies/Actors_Combats_"
+								+ area + ".png")), Config.ACT_BATTLE_SIZE,
+				Config.ACT_BATTLE_SIZE);
+		
+		int rand = new Random().nextInt(4) + 1;
 		mEnemies = new ArrayList<BattleActor>();
 		System.out.println("Enemies: " + rand);
 		for (int i = 0; i < rand; i++) {
-			mEnemies.add(makeActor());
+			int randActor = new Random().nextInt(rand);
+			TextureRegion[] tmpEnemiTR = new TextureRegion[4];
+			
+			for(int j=0; j<4; j++)
+				tmpEnemiTR[j] = tmp[randActor][j];
+			
+			mEnemies.add(makeActor(tmpEnemiTR));
 		}
 	}
 
 	private void initQueue() {
 		int cap = mParty.size() + mEnemies.size();
-		mBattleActorQueue = new PriorityQueue<BattleActor>(cap, new StatsComparator());
+		mBattleActorQueue = new PriorityQueue<BattleActor>(cap,
+				new StatsComparator());
 	}
-
-
 
 	public void nextTurn() {
 		if (mBattleActorQueue.isEmpty()) {
@@ -70,7 +100,6 @@ public class BattleEngine {
 	public void executeAction(String action, BattleActor BattleActor) {
 	}
 
-	
 	public boolean isFinished() {
 		Iterator<BattleActor> it = mEnemies.iterator();
 		while (it.hasNext()) {

@@ -3,8 +3,10 @@ package com.brakassey.sunproject.actors;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.brakassey.sunproject.Config;
+import com.brakassey.sunproject.screens.CombatScreen;
 import com.brakassey.sunproject.utils.Stats;
 
 public class BattleActor extends Actor {
@@ -15,15 +17,36 @@ public class BattleActor extends Actor {
     private Sprite m_sprite;
 	private int state;
 	private Stats stats;
+	private CombatScreen m_combatscreen;
+	private TextureRegion[] actorTR;
 
-	public BattleActor(Texture tex) {
+	// Constructor for heroes
+	public BattleActor(CombatScreen combatscreen, Texture tex) {
+		m_combatscreen = combatscreen;
 		m_texture = tex;
-		m_sprite = new Sprite(m_texture, Config.TILE_SIZE, Config.TILE_SIZE);
-		m_sprite.setScale(Config.TILE_SCALE);
+		TextureRegion[][] heroTR = TextureRegion.split(tex, Config.ACT_BATTLE_SIZE, Config.ACT_BATTLE_SIZE);
+		
+		for(int i=0; i<4; i++)
+			actorTR[i] = heroTR[0][i];
+		
+		m_sprite = new Sprite(actorTR[0]);
+	}
+	// Constructor for enemies
+	public BattleActor(TextureRegion[] enemiTR) {
+		// TODO Auto-generated constructor stub
+		actorTR = enemiTR;
+		m_sprite = new Sprite(actorTR[0]);
 	}
 
 	@Override
 	public void draw(SpriteBatch batch, float parentAlpha) {
+		float x = m_sprite.getX();
+        float y = m_sprite.getY();
+        m_sprite.setPosition(
+                ((int) (x * Config.WIN_DIV)) / (float) (Config.WIN_DIV),
+                ((int) (y * Config.WIN_DIV)) / (float) (Config.WIN_DIV));
+
+        m_sprite.draw(batch);
 
 	}
 
