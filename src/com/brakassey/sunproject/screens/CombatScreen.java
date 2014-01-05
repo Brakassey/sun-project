@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.brakassey.sunproject.actors.BattleActor;
@@ -27,6 +28,8 @@ public class CombatScreen extends InputAdapter implements Screen {
 	Stage uiStage;
 	Game game;
     private SpriteBatch m_batch = new SpriteBatch();
+	Group enemiesParty;
+	Group heroesParty;
 
 	public CombatScreen(Game game) {
 		this.game = game;
@@ -44,10 +47,28 @@ public class CombatScreen extends InputAdapter implements Screen {
 					Gdx.graphics.getHeight(), false);
 		}
 		stage.clear();
-		for (BattleActor player : engine.getParty())
-			stage.addActor(player);
-		for (BattleActor player : engine.getEnemies())
-			stage.addActor(player);
+		
+		float x = Gdx.graphics.getWidth()/2+150;
+		float y = Gdx.graphics.getWidth()/2-100;
+		
+		for (BattleActor player : engine.getParty()){
+			player.setPosition(x, y);
+			heroesParty.addActor(player);
+			y = y+200;
+		}
+		
+		x = Gdx.graphics.getWidth()/2-150;
+		y = Gdx.graphics.getWidth()/2-100;
+		
+		for (BattleActor player : engine.getEnemies()){
+			enemiesParty.addActor(player);
+			y=y+100;
+		}
+		stage.addActor(heroesParty);
+		stage.addActor(enemiesParty);
+		
+		enemiesParty.setPosition(Gdx.graphics.getWidth()/2-150, Gdx.graphics.getHeight()/2);
+		heroesParty.setPosition(Gdx.graphics.getWidth()/2+150, Gdx.graphics.getHeight()/2);
 	}
 
 	@Override
@@ -56,9 +77,9 @@ public class CombatScreen extends InputAdapter implements Screen {
 		stage.act(Gdx.graphics.getDeltaTime());
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		m_batch.begin();
 		stage.draw();
 		uiStage.draw();
-		m_batch.begin();
 		m_batch.end();
 	}
 
@@ -75,6 +96,8 @@ public class CombatScreen extends InputAdapter implements Screen {
 					Gdx.graphics.getHeight(), false);
 			uiStage = new Stage(Gdx.graphics.getWidth(),
 					Gdx.graphics.getHeight(), false);
+			enemiesParty = new Group();
+			heroesParty = new Group();
 		}
 		OrthographicCamera camera = new OrthographicCamera(
 				Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
