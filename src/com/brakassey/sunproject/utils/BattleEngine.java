@@ -46,8 +46,10 @@ public class BattleEngine {
 
 		m_hero = new BattleActor(m_combatscreen, new Texture(
 				Gdx.files.internal("img/battle_actors/heroes/leef.png")));
+		m_hero.setName("leef");
 		mogloo = new BattleActor(m_combatscreen, new Texture(
 				Gdx.files.internal("img/battle_actors/heroes/mogloo.png")));
+		mogloo.setName("mogloo");
 		mParty = new ArrayList<BattleActor>();
 		mParty.add(m_hero);
 		mParty.add(mogloo);

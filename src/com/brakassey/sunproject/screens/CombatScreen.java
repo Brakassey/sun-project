@@ -11,9 +11,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.utils.SnapshotArray;
 import com.brakassey.sunproject.actors.BattleActor;
 import com.brakassey.sunproject.utils.BattleEngine;
 import com.brakassey.sunproject.utils.StyledTable;
@@ -48,27 +50,21 @@ public class CombatScreen extends InputAdapter implements Screen {
 		}
 		stage.clear();
 		
-		float x = Gdx.graphics.getWidth()/2+150;
-		float y = Gdx.graphics.getWidth()/2-100;
-		
-		for (BattleActor player : engine.getParty()){
-			player.setPosition(x, y);
-			heroesParty.addActor(player);
-			y = y+200;
-		}
-		
-		x = Gdx.graphics.getWidth()/2-150;
-		y = Gdx.graphics.getWidth()/2-100;
-		
-		for (BattleActor player : engine.getEnemies()){
+		for (BattleActor player : engine.getParty())
+			heroesParty.addActor(player);	
+		for (BattleActor player : engine.getEnemies())
 			enemiesParty.addActor(player);
-			y=y+100;
-		}
+
 		stage.addActor(heroesParty);
 		stage.addActor(enemiesParty);
 		
-		enemiesParty.setPosition(Gdx.graphics.getWidth()/2-150, Gdx.graphics.getHeight()/2);
-		heroesParty.setPosition(Gdx.graphics.getWidth()/2+150, Gdx.graphics.getHeight()/2);
+		// TEST : Probleme pour un setPosition d'un actor en particulier.
+		heroesParty.setOrigin(0, 0);
+		heroesParty.setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getWidth()/2);
+		heroesParty.setSize(Gdx.graphics.getWidth(), Gdx.graphics.getWidth());
+		heroesParty.findActor("leef").setPosition(Gdx.graphics.getWidth()/2, Gdx.graphics.getWidth()/2);
+		heroesParty.findActor("mogloo").setPosition(Gdx.graphics.getWidth()/2+50, Gdx.graphics.getWidth()/2+50);
+		
 	}
 
 	@Override
