@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.SnapshotArray;
 import com.brakassey.sunproject.actors.BattleActor;
 import com.brakassey.sunproject.utils.BattleEngine;
+import com.brakassey.sunproject.utils.SoundManager;
 import com.brakassey.sunproject.utils.StyledTable;
 import com.brakassey.sunproject.utils.TextBox;
 
@@ -32,6 +34,8 @@ public class CombatScreen extends InputAdapter implements Screen {
     private SpriteBatch m_batch = new SpriteBatch();
 	Group enemiesParty;
 	Group heroesParty;
+	SoundManager soundM = new SoundManager();
+	Music themeSound;
 
 	public CombatScreen(Game game) {
 		this.game = game;
@@ -87,6 +91,9 @@ public class CombatScreen extends InputAdapter implements Screen {
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
+		themeSound = soundM.newMusic(Gdx.files.internal("sounds/battle.mp3"));
+		themeSound.setVolume(1.0f);
+		themeSound.play();
 		if (stage == null) {
 			stage = new Stage(Gdx.graphics.getWidth(),
 					Gdx.graphics.getHeight(), false);
@@ -139,5 +146,6 @@ public class CombatScreen extends InputAdapter implements Screen {
 		// TODO Auto-generated method stub
 		stage.dispose();
 		uiStage.dispose();
+		themeSound.dispose();
 	}
 }

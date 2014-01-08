@@ -9,6 +9,7 @@ import java.util.List;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -23,6 +24,7 @@ import com.brakassey.sunproject.actors.AnimatedActor;
 import com.brakassey.sunproject.inputs.FollowInput;
 import com.brakassey.sunproject.inputs.RandomInput;
 import com.brakassey.sunproject.inputs.UserInput;
+import com.brakassey.sunproject.utils.SoundManager;
 
 
 public class GameScreen implements Screen {
@@ -40,6 +42,8 @@ public class GameScreen implements Screen {
 
     private List<Actor> m_actors;
     AnimatedActor m_hero;
+    SoundManager soundM = new SoundManager();
+    Music themeSound;
 
     public GameScreen(Game game, TiledMap map) {
         m_game = game;
@@ -82,11 +86,16 @@ public class GameScreen implements Screen {
         m_actors.add(mogloo);
         m_actors.add(mogloo2);
         m_actors.add(mogloo3);
+        
+        themeSound = soundM.newMusic(Gdx.files.internal("sounds/grassland.mp3"));
+        themeSound.setVolume(1.0f);
+    	themeSound.play();
     }
 
     @Override
     public void render(float delta) {
-
+    	
+    	
         // Update game
         for (Actor a : m_actors)
             a.update(delta);
@@ -142,6 +151,7 @@ public class GameScreen implements Screen {
         if(m_hero.isMoving()){
         	randNumber = (int)( Math.random()*100);
         	if(randNumber > 98){
+        		themeSound.stop();
         		m_game.setScreen(new CombatScreen(m_game));
         	}   	
         }
@@ -178,7 +188,7 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+    	themeSound.dispose();
     }
 
     public boolean isTileSolid(int x, int y) {
