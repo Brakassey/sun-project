@@ -150,6 +150,7 @@ public class GameScreen implements Screen {
 
         m_batch.end();
         
+        // CombatScreen appareances (random)
         if(m_hero.isMoving()){
         	randNumber = (int)( Math.random()*100);
         	if(randNumber > 98 && battleWork){
