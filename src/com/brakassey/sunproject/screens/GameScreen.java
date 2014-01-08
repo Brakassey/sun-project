@@ -36,7 +36,8 @@ public class GameScreen implements Screen {
     private int randNumber;
     private TiledMap m_map;
     private MapRenderer m_map_renderer;
-
+	private boolean battleWork = false;
+	private double battleCounter = 0;
     private OrthographicCamera m_camera;
     private OrthographicCamera m_gui_camera;
 
@@ -44,6 +45,7 @@ public class GameScreen implements Screen {
     AnimatedActor m_hero;
     SoundManager soundM = new SoundManager();
     Music themeSound;
+
 
     public GameScreen(Game game, TiledMap map) {
         m_game = game;
@@ -150,11 +152,17 @@ public class GameScreen implements Screen {
         
         if(m_hero.isMoving()){
         	randNumber = (int)( Math.random()*100);
-        	if(randNumber > 98){
+        	if(randNumber > 98 && battleWork){
         		themeSound.stop();
+        		battleWork = false;
+        		battleCounter = 0;
         		m_game.setScreen(new CombatScreen(m_game));
-        	}   	
+        	}
+        	battleCounter = battleCounter + 0.1;
         }
+        // Treshold can be modified
+        if (battleCounter > Config.BATTLE_TRESHOLD)
+        	battleWork = true;
     }
 
     @Override
